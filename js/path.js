@@ -3,7 +3,7 @@ var directionsService;
 var map;
 var routeboxer = null;
 var distance = 0.01; // km
-
+var points = [];
 function initMap() {
     directionsService = new google.maps.DirectionsService();
     directionsDisplay = new google.maps.DirectionsRenderer();
@@ -58,8 +58,10 @@ function initMap() {
                 // console.log("hi");
                 var infowindow = new google.maps.InfoWindow();
                 infowindow.setContent(result.routes[i].legs[0].distance.text+"<br>"+result.routes[i].legs[0].duration.text+"<br>"+colors[i]);
-                infowindow.setPosition(result.routes[i].legs[0].steps[parseInt(result.routes[i].legs[0].steps.length*2/3)].end_location);
+                infowindow.setPosition(result.routes[i].legs[0].steps[parseInt(result.routes[i].legs[0].steps.length*(i+1)/(result.routes.length+1))].end_location);
                 infowindow.open(map);
+                points.push(result.route[i]);
+
             }
         } else {
             $("#error").append("Unable to retrieve your route<br />");
@@ -67,6 +69,9 @@ function initMap() {
     });
     var trafficLayer = new google.maps.TrafficLayer();
     trafficLayer.setMap(map);
+    
+
+
 }
 
 

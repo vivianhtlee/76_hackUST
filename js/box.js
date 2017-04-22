@@ -1,7 +1,3 @@
-mapOfCCTV = {
-    H1: { lat: 22.279248, lng: 114.171972 }
-}
-
 var boxes = [];
 
 function drawBoxes() {
@@ -28,8 +24,12 @@ function personalBox(overview_path, box_number) {
         console.log(boxes_of_path[i])
         j += 1;
         k += 1;
-    }
-    return boxes;
+        boxes_of_path[i].large_lat+=10;
+        boxes_of_path[i].large_lng+=10;
+        boxes_of_path[i].small_lat-=10;
+        boxes_of_path[i].small_lat-=10;    
+}
+    return boxes_of_path;
 }
 
 function checkNearRoute(boxes, lat, lng) {
