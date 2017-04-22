@@ -1,7 +1,3 @@
-$(document).ready(function () {
-    console.log(start_lat, start_lng, end_lat, end_lng);
-});
-
 var directionsDisplay;
 var directionsService;
 var map;
@@ -40,6 +36,8 @@ function initMap() {
             directionsDisplay.setDirections(result);
         }
     });
+    var trafficLayer = new google.maps.TrafficLayer();
+    trafficLayer.setMap(map);
 }
 
 
