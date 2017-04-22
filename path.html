@@ -20,13 +20,16 @@
   <script src="lib/firebase.js"></script>
   <script src="lib/angularfire.min.js"></script>
 
-
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjTNEDoH-L8d6MIMxc1E4vv4AYAA5wVsw&callback=initMap" async
+    defer></script>
+  <!--<script src="lib/RouteBoxer.js"></script>-->
   <script src="js/site.js"></script>
   <script src="js/path.js"></script>
   <style>
     #map {
       height: 100%;
     }
+    
     html,
     body {
       height: 100%;
@@ -38,9 +41,7 @@
 
 <body ng-controller="pathCtrl">
   <div id="map"></div>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjTNEDoH-L8d6MIMxc1E4vv4AYAA5wVsw&callback=initMap" async
-    defer></script>
-    
+
 </body>
 
 </html>
