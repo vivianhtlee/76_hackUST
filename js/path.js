@@ -9,6 +9,12 @@ var points = [];
 var overview_paths = [];
 var paths_length = [];
 var number_of_paths;
+
+function home() {
+    var url = "index.html";
+    window.location.href = url;
+}
+
 function initMap() {
     directionsService = new google.maps.DirectionsService();
     directionsDisplay = new google.maps.DirectionsRenderer();
@@ -78,7 +84,7 @@ function initMap() {
             number_of_paths = result.routes.length;
             choosePath();
         } else {
-            $("#error").append("Unable to retrieve your route<br />");
+            $("#error").append("Unable to retrieve your route<br/>");
         }
 
     });
@@ -170,9 +176,9 @@ function createMarker(place) {
     });
 
     console.log(marker);
-    google.maps.event.addListener(marker, 'click', function(){
+    google.maps.event.addListener(marker, 'click', function () {
         InfoWindow123.setContent(place.name);
-        InfoWindow123.open(map,this);
+        InfoWindow123.open(map, this);
     });
 }
 
