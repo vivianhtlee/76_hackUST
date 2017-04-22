@@ -53,13 +53,14 @@
         <script src="js/jquery.fancybox.js"></script>
         <!-- template main js -->
         <script src="js/main.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
         <style>
                 #menubar{
                     position: relative;
-                    top:22px;
+                    top:21px;
 
                 }
-        </style>  
+        </style>    
     </head>
     <body>
         <!--
@@ -81,7 +82,7 @@
                     <!-- logo -->
                     <div class="navbar-brand">
                         <a href="index.html" >
-                            <img src="images/logo.png" align="top" style="height:40px; " alt="">
+                            <img src="images/logo.png" style="height:40px" alt="">
                         </a>
                     </div>
                     <!-- /logo -->
@@ -114,7 +115,7 @@
                                     </ul>
                                 </div>
                             </li>-->
-                            <!--<li><a href="contact.html">Contact</a></li>-->
+                            <li><a href="contact.html">Contact</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -126,67 +127,20 @@
         ================================================== 
             Global Page Section Start
         ================================================== -->
-        <section class="global-page-header">
+        <section class="global-page-header-thin">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="block">
-                            <!--<h2>Contact</h2>-->
-                            <!--<ol class="breadcrumb">
-                                <li>
-                                    <a href="index.html">
-                                        <i class="ion-ios-home"></i>
-                                        Home
-                                    </a>
-                                </li>
-                                <li class="active">Contact</li>
-                            </ol>-->
-                        </div>
+                    <div class="col-md-3">
+                       
+                    </div>
+                    <div class="col-md-6 text-center" >
+                        <img src="images/upload.png"   style="width:180px;top:50px; position: relative;">
+                    </div>
+                    <div class="col-md-3 text-right">
+                        
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-3">
-                    </div>
-                    <div class="col-md-6">
-                        <div class="center-block">
-                            <h2 class="subtitle wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".3s">Where are you heading for?</h2>
-                            <p class="subtitle-des wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".5s">
-                                We will find you the best places to stop by along your jouranay.
-                            </p>
-                            <div class="contact-form">
-                                <form id="contact-form" method="post" action="sendmail.php" role="form">
-                        
-                                    <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".6s">
-                                        <input type="text" placeholder="Starting point" class="form-control" name="start" id="start">
-                                    </div>
-                                    <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".8s">
-                                        <input type="text" placeholder="Destination" class="form-control" name="destination" id="destination">
-                                    </div>
 
-                                    <!--<div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".8s">
-                                        <input type="email" placeholder="Your Email" class="form-control" name="email" id="email" >
-                                    </div>
-                                    
-                                    <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay="1s">
-                                        <input type="text" placeholder="Subject" class="form-control" name="subject" id="subject">
-                                    </div>
-                                    
-                                    <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay="1.2s">
-                                        <textarea rows="6" placeholder="Message" class="form-control" name="message" id="message"></textarea>    
-                                    </div>-->
-                                    
-                                    <br>
-                                    <div id="submit" class="wow fadeInDown" data-wow-duration="500ms" data-wow-delay="1.4s">
-                                        <input type="submit" id="contact-submit" class="btn btn-default btn-send " style="border-radius:0; border:none; color:#02bdd5; padding:10px 30px;" value="GO">
-                                         
-                                    </div>                      
-                                    <br>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                    </div>
             </div>   
         </section><!--/#page-header-->
 
@@ -201,9 +155,16 @@
 
                     <div class="col-md-6">
                          <div class="map-area">
-                            <h2 class="subtitle  wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".3s">Find Us</h2>
-                            <p class="subtitle-des wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".5s">
-                                Si aute quis eu proident o cupidatat ne anim nescius, et est praesentibus, o quorum vidisse expetendis, nostrud eram quibusdam ad nam nostrud ubi.
+                            <h2 class="subtitle  wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".3s" style="display: inline;">What</h2><h3 class=" wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".3s" style="display: inline;"> is this place?</h3>
+                            <br><br>
+                            <p class="subtitle-des wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".5s" style="border-bottom: 1px solid black;border-left: 1px solid black;">
+                                
+                                
+                            </p>
+                            <h2 class="subtitle  wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".8s" style="display: inline;">How</h2><h3 class=" wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".8s" style="display: inline;"> is this place?</h3>
+                            <br><br><br>
+                            <p class="subtitle-des wow fadeInDown" data-wow-duration="500ms" data-wow-delay="1s" style="border-bottom: 1px solid black;border-left: 1px solid black;">
+                                
                                 
                             </p>
                             <div class="map">
@@ -213,32 +174,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row address-details">
-                    <div class="col-md-3">
-                        <div class="address wow fadeInLeft" data-wow-duration="500ms" data-wow-delay=".3s">
-                            <i class="ion-ios-location-outline"></i>
-                            <h5>125 , Kings Street,Melbourne <br>United Kingdom,600562</h5>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="address wow fadeInLeft" data-wow-duration="500ms" data-wow-delay=".5s">
-                            <i class="ion-ios-location-outline"></i>
-                            <h5>125 , Kings Street,Melbourne <br>United Kingdom,600562</h5>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="email wow fadeInLeft" data-wow-duration="500ms" data-wow-delay=".7s">
-                            <i class="ion-ios-email-outline"></i>
-                            <p>support@themefisher.com<br>support@themefisher.com</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="phone wow fadeInLeft" data-wow-duration="500ms" data-wow-delay=".9s">
-                            <i class="ion-ios-telephone-outline"></i>
-                            <p>+07 052 245 022<br>+07 999 999 999</p>
-                        </div>
-                    </div>
-                </div>
+ 
             </div>
         </section>
 
@@ -304,7 +240,7 @@
                 </div>
             </div>
         </footer> <!-- /#footer -->
-    
+
     </body>
 </html>
 
