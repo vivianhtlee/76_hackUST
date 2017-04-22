@@ -1,13 +1,12 @@
+$(document).ready(function () {
+    console.log(start_lat, start_lng, end_lat, end_lng);
+});
+
 var directionsDisplay;
 var directionsService;
 var map;
 
 function initMap() {
-    // var uluru = { lat: -25.363, lng: 131.044 };
-    // var map = new google.maps.Map(document.getElementById('map'), {
-    //   zoom: 4,
-    //   center: uluru
-    // });
     directionsService = new google.maps.DirectionsService();
     directionsDisplay = new google.maps.DirectionsRenderer();
     map = new google.maps.Map(document.getElementById('map'));
@@ -20,9 +19,16 @@ function initMap() {
 
     // var start = "chicago, il";
     // var end = "st louis, mo";
-    var start = "22.24687649956814,113.87282431125641"; 
-    var end =  "22.2529765982008,113.86536609381437";
-    // {lat: -34.397, lng: 150.644};
+    var start_lat = getURLParameter("start_lat");
+    var start_lng = getURLParameter("start_lng");
+    var end_lat = getURLParameter("end_lat");
+    var end_lng = getURLParameter("end_lng");
+    // var start = new google.maps.LatLng({lat: start_lat,lng: start_lng});
+    // var end = new google.maps.LatLng({lat: end_lat,lng: end_lng}); 
+    // var start = new google.maps.LatLng({lat:22.24687649956814,lng:113.87282431125641});
+    // var end = new google.maps.LatLng({lat:22.2529765982008,lng:113.86536609381437}); 
+    var start = "\"" + start_lat + "," + start_lng + "\"";
+    var end = "\"" + end_lat + "," + end_lng + "\"";
 
     var request = {
         origin: start,
