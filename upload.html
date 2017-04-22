@@ -53,14 +53,13 @@
         <script src="js/jquery.fancybox.js"></script>
         <!-- template main js -->
         <script src="js/main.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
         <style>
                 #menubar{
                     position: relative;
                     top:22px;
 
                 }
-        </style>    
+        </style>  
     </head>
     <body>
         <!--
@@ -82,7 +81,7 @@
                     <!-- logo -->
                     <div class="navbar-brand">
                         <a href="index.html" >
-                            <img src="images/logo.png" style="height:40px" alt="">
+                            <img src="images/logo.png" align="top" style="height:40px; " alt="">
                         </a>
                     </div>
                     <!-- /logo -->
@@ -105,7 +104,7 @@
                                     </ul>
                                 </div>
                             </li>-->
-                            <li class="dropdown">
+                            <!--<li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog <span class="caret"></span></a>
                                 <div class="dropdown-menu">
                                     <ul>
@@ -114,8 +113,8 @@
                                         <li><a href="blog-right-sidebar.html">Blog Right sidebar</a></li>
                                     </ul>
                                 </div>
-                            </li>
-                            <li><a href="contact.html">Contact</a></li>
+                            </li>-->
+                            <!--<li><a href="contact.html">Contact</a></li>-->
                         </ul>
                     </div>
                 </nav>
@@ -305,44 +304,7 @@
                 </div>
             </div>
         </footer> <!-- /#footer -->
-            <script type="text/javascript">
-            function initialize() {
-                var startPoint = document.getElementById('startingPoint');
-                var startAutocomplete = new google.maps.places.Autocomplete(startPoint);
-                var endPoint = document.getElementById('endPoint');
-                var endAutocomplete = new google.maps.places.Autocomplete(endPoint);
-                google.maps.event.addListener(startAutocomplete, 'place_changed', function () {
-                    var startPlace = startAutocomplete.getPlace();
-                    var location = "Address: " + startPlace.formatted_address + "<br/>";
-                    location += "Latitude: " + startPlace.geometry.location.lat() + "<br/>";
-                    location += "Longitude: " + startPlace.geometry.location.lng();
-                    document.getElementById('lblresult').innerHTML = location;
-                });
-                 google.maps.event.addListener(endAutocomplete, 'place_changed', function () {
-                    var endPlace = endAutocomplete.getPlace();
-                    var location2 = "Address: " + endPlace.formatted_address + "<br/>";
-                    location2 += "Latitude: " + endPlace.geometry.location.lat() + "<br/>";
-                    location2 += "Longitude: " + endPlace.geometry.location.lng();
-                    document.getElementById('lblresult').innerHTML = location2;
-                });
-                
-                $("#theForm").submit(function(e){
-                    event.preventDefault();
-                    var startLat = startAutocomplete.getPlace().geometry.location.lat();
-                    var startLng = startAutocomplete.getPlace().geometry.location.lng();
-                    var endLat = endAutocomplete.getPlace().geometry.location.lat();
-                    var endLng = endAutocomplete.getPlace().geometry.location.lng();
-                    var url = "path.html?start_lat="+startLat+"&&start_lng="+startLng+"&&end_lat="+endLat+"&&end_lng="+endLng;
-                    window.location.href = url;
-                });
-            }
-            
-            google.maps.event.addDomListener(window, 'load', initialize);
-        
-        </script>
-         <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    
     </body>
 </html>
 
