@@ -8,6 +8,7 @@ var distance = 0.01; // km
 var points = [];
 var overview_paths = [];
 var paths_length = [];
+var number_of_paths;
 function initMap() {
     directionsService = new google.maps.DirectionsService();
     directionsDisplay = new google.maps.DirectionsRenderer();
@@ -74,6 +75,7 @@ function initMap() {
                 paths_length.push(result.routes[i].legs[0].distance.value);
                 overview_paths.push(result.routes[i].overview_path);
             }
+            number_of_paths=result.routes.length;
         } else {
             $("#error").append("Unable to retrieve your route<br />");
         }
@@ -119,11 +121,11 @@ function choosePath() {
     console.log("choosing");
     var shortest = paths_length[0];
     console.log("shortest"+shortest);
-    for (var i = 1; i <= paths_length.length; i++) {
+    for (var i = 1; i <= number_of_paths; i++) {
         if (paths_length[i] < shortest)
             shortest = paths_length[i];
     }
-    for (var i = 1; i <= paths_length.length; i++) {
+    for (var i = 1; i <= number_of_paths; i++) {
         if (paths_length[i] > shortest)
             putPoints(i);
     }
@@ -132,7 +134,7 @@ function choosePath() {
 function putPoints(indexOfPath) {
     var request1;
     service = new google.maps.places.PlacesService(map);
-    var boxes = personalBox(overview_paths[indexOfPath], 10);
+    var boxes = personalBox(overview_paths[indexOfPath], 12);
     for (var i = 0; i < boxes.length; i++) {
         request1 = {
             bounds: new google.maps.LatLngBounds(
@@ -144,8 +146,6 @@ function putPoints(indexOfPath) {
         console.log("yo: " + boxes[i].small_lat, boxes[i].small_lng, boxes[i].large_lat, boxes[i].large_lng);
         service.nearbySearch(request1, callback);
     }
-    if (indexOfPath < 3)
-        putPoints(indexOfPath + 1);
 }
 
 function callback(results, status) {
