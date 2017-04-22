@@ -76,6 +76,7 @@ function initMap() {
                 overview_paths.push(result.routes[i].overview_path);
             }
             number_of_paths = result.routes.length;
+            choosePath();
         } else {
             $("#error").append("Unable to retrieve your route<br />");
         }
