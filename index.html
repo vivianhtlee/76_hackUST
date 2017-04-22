@@ -1,13 +1,12 @@
 <html lang="en">
     <head>
-        <script type="text/javascript" src="jquery.min.js"></script>
-        <script src="jquery-ui/jquery-ui.js"></script>
-        <link href="jquery-ui/jquery-ui.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>    
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-        
+        <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    
         <style type="text/css">
             
             input{
@@ -27,15 +26,8 @@
                 
             }
             
-            ul {
-                list-style-type: none;
-                margin: 0;
-                padding: 0;
-                width: 60px;
-            } 
-
-            li a {
-                display: block;
+            #map {
+                height: 100%;
             }
         </style>
             
@@ -44,13 +36,6 @@
     
     <body>
         
-        
-        <ul>
-          <li><a href="default.asp">Home</a></li>
-          <li><a href="news.asp">News</a></li>
-          <li><a href="contact.asp">Contact</a></li>
-          <li><a href="about.asp">About</a></li>
-        </ul>
         
         <div id="container">
 
@@ -94,46 +79,109 @@
                 </fieldset>
                     <button class="btn btn-primary" type="submit" id="submit-button">Confirm</button>
             </form>
-            <label id="lblresult"></label>
+            <div id="map" style="display:none;"></div>
         
         </div>
         
         <script type="text/javascript">
             function initialize() {
+                var currentStartlocation;
                 var startPoint = document.getElementById('startingPoint');
                 var startAutocomplete = new google.maps.places.Autocomplete(startPoint);
                 var endPoint = document.getElementById('endPoint');
                 var endAutocomplete = new google.maps.places.Autocomplete(endPoint);
+                var geocoder = new google.maps.Geocoder();    
                 google.maps.event.addListener(startAutocomplete, 'place_changed', function () {
                     var startPlace = startAutocomplete.getPlace();
                     var location = "Address: " + startPlace.formatted_address + "<br/>";
                     location += "Latitude: " + startPlace.geometry.location.lat() + "<br/>";
                     location += "Longitude: " + startPlace.geometry.location.lng();
-                    document.getElementById('lblresult').innerHTML = location;
                 });
+                
                  google.maps.event.addListener(endAutocomplete, 'place_changed', function () {
                     var endPlace = endAutocomplete.getPlace();
                     var location2 = "Address: " + endPlace.formatted_address + "<br/>";
                     location2 += "Latitude: " + endPlace.geometry.location.lat() + "<br/>";
-                    location2 += "Longitude: " + endPlace.geometry.location.lng();
-                    document.getElementById('lblresult').innerHTML = location2;
+                    location2 += "Longitude: " + endPlace.geometry.location.lng();       
                 });
                 
                 $("#theForm").submit(function(e){
                     event.preventDefault();
-                    var startLat = startAutocomplete.getPlace().geometry.location.lat();
-                    var startLng = startAutocomplete.getPlace().geometry.location.lng();
+                    var startLat;
+                    var startLng;
+                    try{
+                    startLat = startAutocomplete.getPlace().geometry.location.lat();
+                    startLng = startAutocomplete.getPlace().geometry.location.lng();
+                    }catch(err){
+                        startLat = currentStartlocation.lat();
+                        startLng = currentStartlocation.lng();
+                    }
                     var endLat = endAutocomplete.getPlace().geometry.location.lat();
                     var endLng = endAutocomplete.getPlace().geometry.location.lng();
                     var url = "path.html?start_lat="+startLat+"&&start_lng="+startLng+"&&end_lat="+endLat+"&&end_lng="+endLng;
                     window.location.href = url;
                 });
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    center: {lat: -34.397, lng: 150.644},
+                    zoom: 6
+                });
+                var infoWindow = new google.maps.InfoWindow({map: map});
+
+                // Try HTML5 geolocation.
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                        var pos = {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude
+                        };
+                        
+                        var latlng = {lat: pos.lat, lng: pos.lng};
+                        console.log(latlng);
+                        geocoder.geocode( {'location': latlng}, function(results, status) 
+                          {
+                            if (status == google.maps.GeocoderStatus.OK) 
+                            {
+                              map.setCenter(results[1].geometry.location);//center the map over the result
+                              //place a marker at the location
+                                
+                                $("#startingPoint").val(results[0].formatted_address);
+                                currentStartlocation = results[0].geometry.location;
+                                console.log(currentStartlocation);
+
+                              var marker = new google.maps.Marker(
+                              {
+                                  map: map,
+                                  position: results[0].geometry.location
+                              });
+                            } else {
+                              alert('Geocode was not successful for the following reason: ' + status);
+                           }
+                          });
+                        infoWindow.setPosition(pos);
+                        infoWindow.setContent('Location found.');
+                        map.setCenter(pos);
+                    }, function() {
+                        handleLocationError(true, infoWindow, map.getCenter());
+                    });
+                } else {
+                    // Browser doesn't support Geolocation
+                    handleLocationError(false, infoWindow, map.getCenter());
+                }
+
+                function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+                    infoWindow.setPosition(pos);
+                    infoWindow.setContent(browserHasGeolocation ?
+                                          'Error: The Geolocation service failed.' :
+                                          'Error: Your browser doesn\'t support geolocation.');
+                }
+
             }
-            
             google.maps.event.addDomListener(window, 'load', initialize);
+            
+
         
         </script>
-         <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     
