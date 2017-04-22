@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="path-app">
+  <head>
+    <title>76_hackUST</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    
+  <script src="lib/jquery.min.js"></script>
+  <script src="lib/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="lib/bootstrap.min.css">
+  <link rel="stylesheet" href="lib/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  
+  <script src="js/path.js"></script>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body ng-controller="pathCtrl">
+    <div id="map"></div>
+    <script>
+      var map;
+      function initMap() {
+        var uluru = {lat: -25.363, lng: 131.044};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+      // earthquake example: Create a script tag and set the USGS URL as the source.
+        // var script = document.createElement('script');
+        // script.src = 'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp';
+        // document.getElementsByTagName('head')[0].appendChild(script);
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjTNEDoH-L8d6MIMxc1E4vv4AYAA5wVsw&callback=initMap"
+    async defer></script>
+  </body>
+</html>
