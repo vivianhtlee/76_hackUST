@@ -1,7 +1,7 @@
 var directionsDisplay;
 var directionsService;
 var map;
-var InfoWindow123 = new google.maps.InfoWindow();;
+var InfoWindow123;
 var service;
 var routeboxer = null;
 var distance = 0.01; // km
@@ -14,7 +14,7 @@ function initMap() {
     directionsDisplay = new google.maps.DirectionsRenderer();
     map = new google.maps.Map(document.getElementById('map'));
     directionsDisplay.setMap(map);
-
+    InfoWindow123 = new google.maps.InfoWindow();
     // var marker = new google.maps.Marker({
     //   position: uluru,
     //   map: map
@@ -75,7 +75,7 @@ function initMap() {
                 paths_length.push(result.routes[i].legs[0].distance.value);
                 overview_paths.push(result.routes[i].overview_path);
             }
-            number_of_paths=result.routes.length;
+            number_of_paths = result.routes.length;
         } else {
             $("#error").append("Unable to retrieve your route<br />");
         }
@@ -120,7 +120,7 @@ function choosePath() {
     //TODO
     console.log("choosing");
     var shortest = paths_length[0];
-    console.log("shortest"+shortest);
+    console.log("shortest" + shortest);
     for (var i = 1; i <= number_of_paths; i++) {
         if (paths_length[i] < shortest)
             shortest = paths_length[i];
@@ -141,7 +141,7 @@ function putPoints(indexOfPath) {
                 new google.maps.LatLng(boxes[i].small_lat, boxes[i].small_lng),
                 new google.maps.LatLng(boxes[i].large_lat, boxes[i].large_lng)
             ),
-            types: ['restaurant', 'cafe', 'shopping_mall']
+            types: ['restaurant', 'cafe', 'shopping_mall', 'natural_feature']
         }
         console.log("yo: " + boxes[i].small_lat, boxes[i].small_lng, boxes[i].large_lat, boxes[i].large_lng);
         service.nearbySearch(request1, callback);
@@ -168,9 +168,13 @@ function createMarker(place) {
         position: place.geometry.location
     });
 
-
-
+    console.log(marker);
+    google.maps.event.addListener(marker, 'click', function(){
+        InfoWindow123.setContent(place.name);
+        InfoWindow123.open(map,this);
+    });
 }
+
 function sleep(milliseconds) {
     var start = new Date().getTime();
     for (var i = 0; i < 1e7; i++) {
