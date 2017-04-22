@@ -105,7 +105,7 @@
                                     </ul>
                                 </div>
                             </li>-->
-                            <li class="dropdown">
+                            <!--<li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog <span class="caret"></span></a>
                                 <div class="dropdown-menu">
                                     <ul>
@@ -114,7 +114,7 @@
                                         <li><a href="blog-right-sidebar.html">Blog Right sidebar</a></li>
                                     </ul>
                                 </div>
-                            </li>
+                            </li>-->
                             <li><a href="contact.html">Contact</a></li>
                         </ul>
                     </div>
@@ -151,17 +151,17 @@
                     <div class="col-md-6">
                         <div class="center-block">
                             <h2 class="subtitle wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".3s">Where are you heading for?</h2>
-                            <p class="subtitle-des wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".5s">
+                            <!--<p class="subtitle-des wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".5s">
                                 We will find you the best places to stop by along your jouranay.
-                            </p>
+                            </p>-->
                             <div class="contact-form">
                                 <form id="contact-form" method="post" action="sendmail.php" role="form">
                         
                                     <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".6s">
-                                        <input type="text" placeholder="Starting point" class="form-control" name="start" id="start">
+                                        <input type="text" placeholder="Starting point" class="form-control" name="start" id="startingPoint">
                                     </div>
                                     <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".8s">
-                                        <input type="text" placeholder="Destination" class="form-control" name="destination" id="destination">
+                                        <input type="text" placeholder="Destination" class="form-control" name="destination" id="endPoint">
                                     </div>
 
                                     <!--<div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay=".8s">
@@ -175,10 +175,43 @@
                                     <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay="1.2s">
                                         <textarea rows="6" placeholder="Message" class="form-control" name="message" id="message"></textarea>    
                                     </div>-->
-                                    
+                                            <!--<fieldset class="form-group">
+                                                <h4>Any preferred tunnel?</h4>
+                                                <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                                                    None
+                                                </label>
+                                                </div>
+                                                <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2">
+                                                    Cross-Harbour Tunnel
+                                                </label>
+                                                </div>
+                                                <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios3" value="option2">
+                                                    Eastern Harbour Tunnel
+                                                </label>
+                                                </div>
+                                                <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios4" value="option2">
+                                                    Western Harbour Tunnel
+                                                </label>
+                                                </div>
+                                            </fieldset>-->
+
+                                    <select  class="form-control form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay="1s" id="tunnel">
+                                        <option>No preferred tunnel</option>
+                                        <option>Cross-Harbour Tunnel</option>
+                                        <option>Eastern Harbour Tunnel</option>
+                                        <option>Western Harbour Tunnel</option>
+                                    </select>
                                     <br>
-                                    <div id="submit" class="wow fadeInDown" data-wow-duration="500ms" data-wow-delay="1.4s">
-                                        <input type="submit" id="contact-submit" class="btn btn-default btn-send " style="border-radius:0; border:none; color:#02bdd5; padding:10px 30px;" value="GO">
+                                    <div id="submit" class="wow fadeInDown text-center" data-wow-duration="500ms" data-wow-delay="1.4s">
+                                        <input type="submit" id="contact-submit" class="btn btn-default btn-send " style="color:rgb(85,60,144); padding:10px 30px;" value="GO">
                                          
                                     </div>                      
                                     <br>

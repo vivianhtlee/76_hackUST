@@ -546,7 +546,9 @@ ul.social-icons li {
   background-size: cover;
   padding: 120px 0 25px 0;
   position: relative;
-  background: #02bdd5;
+  /*background: #02bdd5;*/
+  
+  background-image: url("../images/hk.jpg");
   color: #fff;
 }
 .global-page-header h2 {
