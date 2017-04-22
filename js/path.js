@@ -29,11 +29,23 @@ function initMap() {
     var request = {
         origin: start,
         destination: end,
+        provideRouteAlternatives: true,
         travelMode: 'DRIVING'
     };
     directionsService.route(request, function (result, status) {
+        // if (status == 'OK') {
+        //     directionsDisplay.setDirections(result);
+        // }
         if (status == 'OK') {
-            directionsDisplay.setDirections(result);
+            for (var i = 0, len = result.routes.length; i < len; i++) {
+                new google.maps.DirectionsRenderer({
+                    map: map,
+                    directions: result,
+                    routeIndex: i
+                });
+            }
+        } else {
+            $("#error").append("Unable to retrieve your route<br />");
         }
     });
     var trafficLayer = new google.maps.TrafficLayer();
