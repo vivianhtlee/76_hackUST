@@ -1,0 +1,20 @@
+<!-- AngularJS -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/3.6.6/firebase.js"></script>
+
+<!-- AngularFire -->
+<script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
+
+
+function initalizeFirebase() {
+    var config = {
+      apiKey: "AIzaSyCw7pPwTqi5mXO84LEfYOVUOI1_UPTTg94",
+      authDomain: "teapot-576b6.firebaseapp.com",
+      databaseURL: "https://teapot-576b6.firebaseio.com",
+      storageBucket: "teapot-576b6.appspot.com",
+      messagingSenderId: "955450264497"
+    };
+    firebase.initializeApp(config);
+}

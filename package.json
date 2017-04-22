@@ -1,0 +1,9 @@
+{
+    "name": "hackUST",
+    "config": {
+        "port": "8080"
+    },
+    "scripts": {
+        "start": "http-server -a localhost -p 8080 -c-1 ./app"
+    }
+}
