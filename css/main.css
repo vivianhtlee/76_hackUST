@@ -560,7 +560,15 @@ ul.social-icons li {
  
   color: #fff;
 }
-
+.global-page-header-thin2{
+  background-attachment: fixed;
+  background-image: url("../images/hk.jpg");
+  padding: 50px 0 0px 0;
+  position: relative;
+  background-size: 100% 150px;
+ 
+  color: #fff;
+}
 .global-page-header h2 {
   font-size: 42px;
   font-weight: bold;
