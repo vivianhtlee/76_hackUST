@@ -20,7 +20,7 @@
   <script src="lib/firebase.js"></script>
   <script src="lib/angularfire.min.js"></script>
 
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjTNEDoH-L8d6MIMxc1E4vv4AYAA5wVsw&callback=initMap" async
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjTNEDoH-L8d6MIMxc1E4vv4AYAA5wVsw&callback=initMap&libraries=places" async
     defer></script>
   <!--<script src="lib/RouteBoxer.js"></script>-->
   <script src="js/site.js"></script>
@@ -41,6 +41,7 @@
 
 <body ng-controller="pathCtrl">
   <div id="map"></div>
+  <button onclick="putPoints(0)">putpoints</button>
 
 </body>
 
