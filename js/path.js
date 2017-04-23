@@ -8,6 +8,7 @@ var distance = 0.01; // km
 var points = [];
 var overview_paths = [];
 var paths_length = [];
+var markers = [];
 var number_of_paths;
 
 function home() {
@@ -82,7 +83,7 @@ function initMap() {
                 overview_paths.push(result.routes[i].overview_path);
             }
             number_of_paths = result.routes.length;
-            choosePath();
+            choosePath(['restaurant', 'cafe', 'shopping_mall', 'natural_feature']);
         } else {
             $("#error").append("Unable to retrieve your route<br/>");
         }
@@ -123,8 +124,17 @@ function personalBox(overview_path, box_number) {
     return boxes_of_path;
 }
 
-function choosePath() {
+function filter(typess){
+    choosePath(typess);
+}
+
+function choosePath(typess) {
     //TODO
+    if(markers[0] != undefined ){
+        for(var i = 0 ; i< markers.length;i++){
+            markers[i].setMap(null);
+        }
+    }
     console.log("choosing");
     var shortest = paths_length[0];
     console.log("shortest" + shortest);
@@ -134,11 +144,11 @@ function choosePath() {
     }
     for (var i = 1; i <= number_of_paths; i++) {
         if (paths_length[i] > shortest)
-            putPoints(i);
+            putPoints(i,typess);
     }
 }
 
-function putPoints(indexOfPath) {
+function putPoints(indexOfPath,typess) {
     var request1;
     service = new google.maps.places.PlacesService(map);
     var boxes = personalBox(overview_paths[indexOfPath], 12);
@@ -148,7 +158,7 @@ function putPoints(indexOfPath) {
                 new google.maps.LatLng(boxes[i].small_lat, boxes[i].small_lng),
                 new google.maps.LatLng(boxes[i].large_lat, boxes[i].large_lng)
             ),
-            types: ['restaurant', 'cafe', 'shopping_mall', 'natural_feature']
+            types: typess
         }
         console.log("yo: " + boxes[i].small_lat, boxes[i].small_lng, boxes[i].large_lat, boxes[i].large_lng);
         service.nearbySearch(request1, callback);
@@ -174,7 +184,7 @@ function createMarker(place) {
         map: map,
         position: place.geometry.location
     });
-
+    markers.push(marker);
     console.log(marker);
     google.maps.event.addListener(marker, 'click', function () {
         InfoWindow123.setContent(place.name);
